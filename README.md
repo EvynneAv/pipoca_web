@@ -59,6 +59,8 @@ Lista as tecnologias, frameworks e bibliotecas utilizados.
 | Filme | X |  X  |  X | X |
 | Sessão | X |  X  | X | X |
 | Ingresso |  |    |  |  |
+| Comentário | X | X   | X | X |
+
 
 > Lembre-se que é necessário implementar o CRUD de pelo menos duas entidades.
 
