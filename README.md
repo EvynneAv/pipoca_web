@@ -1,12 +1,16 @@
-# :checkered_flag: NOME DO PROJETO
+# :checkered_flag: PIPOCA.COM
 
-Breve descrição do que o seu projeto faz.
+Um site simples de venda ingressos para um cinema.
 
 ## :technologist: Membros da equipe
 
-Matrícula, nome e curso dos participantes.
+473618, Evynne Ferreira Avelino, Engenharia de Software.
 
 ## :people_holding_hands: Papéis ou tipos de usuário da aplicação
+
+- Usuário logado
+- Usuário não logado
+- Administrador
 
 Informe aqui os tipos de usuário que irão interagir com a aplicação. Ex: administrador, locador, locatario, usuário não logado.
 
@@ -14,12 +18,19 @@ Informe aqui os tipos de usuário que irão interagir com a aplicação. Ex: adm
 
 ## :spiral_calendar: Entidades ou tabelas do sistema
 
-Liste as principais entidades do sistema.
+- Usuário
+- Filme
+- Ingresso
+- Comentário
+- Sessão
 
 ## :triangular_flag_on_post:	 Principais funcionalidades da aplicação
 
 Descreve ou liste brevemente as principais funcionalidades da aplicação que será desenvolvida. Destaque a funcionalidades que serão acessévies a todos os usuários e aquelas restriras a usuários logados.
 
+- O usuário logado poderá comprar um ingresso.
+- O usuário logado e o não logado poderão ver a lista de filmes disponíveis, os detalhes de cada filme e ver se têm ingressos disponíveis.
+- O administrador poderá adicionar, remover, editar e deletar sessões e filmes.
 
 ----
 
@@ -44,9 +55,10 @@ Lista as tecnologias, frameworks e bibliotecas utilizados.
 
 | Entidade| Criação | Leitura | Atualização | Remoção |
 | --- | --- | --- | --- | --- |
-| Entidade 1 | X |  X  |  | X |
-| Entidade 2 | X |    |  X | X |
-| Entidade 3 | X |    |  |  |
+| Usuário |  |    |  |  |
+| Filme | X |  X  |  X | X |
+| Sessão | X |  X  | X | X |
+| Ingresso |  |    |  |  |
 
 > Lembre-se que é necessário implementar o CRUD de pelo menos duas entidades.
 
