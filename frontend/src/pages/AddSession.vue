@@ -62,8 +62,8 @@ import SCard from '../components/SCard.vue';
     <hr class="my-4 mt-6">
     <h3>Sessões</h3>
     <p class="lead">Aqui você pode gerenciar suas sessões.</p>
-    <SCard></SCard>
-    <SCard></SCard>
+    <SessionCard></SessionCard>
+    <SessionCard></SessionCard>
   </div>
 </div>
 
