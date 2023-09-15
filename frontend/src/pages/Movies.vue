@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import MovieCard from '../components/MovieCard.vue';
-import GFCard from '../components/GFCard.vue'
 import EditMovieCard from '../components/EditMovieCard.vue';
 </script>
 <template>
