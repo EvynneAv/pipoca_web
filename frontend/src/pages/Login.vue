@@ -1,30 +1,22 @@
 <script setup lang="ts">
+import NavBar from '../components/NavBar.vue';
+import Footer from '../components/Footer.vue';
 </script>
 <template>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.115.4">
-    <title>Signin Template · Bootstrap v5.3</title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/">
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
-
-    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom styles for this template -->
-    <link href="sign-in.css" rel="stylesheet">
-  </head>
+  <NavBar></NavBar>
   <body class="d-flex align-items-center py-4 bg-body-tertiary">
 
-    <main class="form-signin w-100 m-auto">
-      <form>
-        <!-- tag pra logo -->
-        <img class="mb-4" src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+    <main class="form-signin w-100 m-auto ">
+      <form >
+        <!-- logo -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-camera-reels" viewBox="0 0 16 16">
+            <path d="M6 3a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM1 3a2 2 0 1 0 4 0 2 2 0 0 0-4 0z"/>
+            <path d="M9 6h.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 7.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 16H2a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h7zm6 8.73V7.27l-3.5 1.555v4.35l3.5 1.556zM1 8v6a1 1 0 0 0 1 1h7.5a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1z"/>
+            <path d="M9 6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM7 3a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
+          </svg>
         <!-- --- -->
-        <h1 class="h3 mb-3 fw-normal">Entrar</h1>
+        <h1 class="h3 mb-3 mt-3 fw-normal">Entrar</h1>
 
         <div class="form-floating">
           <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
@@ -42,14 +34,16 @@
           </label>
         </div>
         <button class="btn btn-primary w-100 py-2" type="submit">Entrar</button>
-        <p class="mt-5 mb-3 text-body-secondary">&copy; 2023</p>
+      
       </form>
     </main>
 
+    
 
   </body>
+  <Footer></Footer>
 </template>
-<style>
+<style scoped>
 
   /* centralizando o form */
   form{

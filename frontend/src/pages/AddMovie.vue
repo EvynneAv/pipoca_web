@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import NavBar from '../components/NavBar.vue';
+import Footer from '../components/Footer.vue';
 </script>
 <template>
+  <NavBar/>
   <div class="container">
     <div class="py-4 text-center">
       <h2>Pipoca</h2>
@@ -41,8 +44,9 @@
 
     </div>
   </div>
+  <Footer/>
 </template>
-<style>
+<style scoped>
 .container {
   max-width: 600px;
 }

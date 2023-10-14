@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import SCard from '../components/SCard.vue';
-
+import SessionCard from '../components/SessionCard.vue';
+import NavBar from '../components/NavBar.vue';
+import Footer from '../components/Footer.vue';
 </script>
 <template>
+  <NavBar/>
   <div class="container">
     <div class="py-4 text-center">
       <h2>Pipoca</h2>
@@ -68,9 +70,10 @@ import SCard from '../components/SCard.vue';
 </div>
 
   </div>
+  <Footer/>
 </template>
-<style>
+<style scoped>
 .container {
-  max-width: 800px;
+  max-width: 600px;
 }
 </style>

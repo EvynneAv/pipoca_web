@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "ingressos",
+  "info": {
+    "singularName": "ingresso",
+    "pluralName": "ingressos",
+    "displayName": "ingresso",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "ingresso_id": {
+      "type": "uid"
+    },
+    "sessao": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::sessao.sessao",
+      "inversedBy": "ingressos"
+    }
+  }
+}

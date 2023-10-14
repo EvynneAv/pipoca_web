@@ -24,7 +24,7 @@
                 <h6>Data</h6>
                 <p class="lead">20/03/23 às 12:00</p>
                 <h6>Valor</h6><p class="lead">12,00R$ </p>
-                <button class="btn btn-secondary btn-sm text-center" type="submit">Ver detalhes do filme</button>
+                <RouterLink to="/movieInDetails" class="btn btn-secondary btn-sm text-center" type="submit">Ver detalhes do filme</RouterLink>
               </div>
               <div class="col-sm-6">
                 <h6>Valor</h6><p class="lead">12,00R$ </p>
@@ -41,7 +41,7 @@
     </div>
   </div>
 </template>
-<style>
+<style scoped>
 .container {
   max-width: 900px;
 }

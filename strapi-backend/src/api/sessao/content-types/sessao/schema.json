@@ -19,6 +19,12 @@
     },
     "sessao_id": {
       "type": "uid"
+    },
+    "ingressos": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::ingresso.ingresso",
+      "mappedBy": "sessao"
     }
   }
 }

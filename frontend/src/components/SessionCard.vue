@@ -44,7 +44,7 @@
     </div>
   </div>
 </template>
-<style>
+<style scoped>
 .container {
   max-width: 600px;
 }

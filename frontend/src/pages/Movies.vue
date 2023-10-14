@@ -23,7 +23,7 @@ import EditMovieCard from '../components/EditMovieCard.vue';
   </div>
 </div>
 </template>
-<style>
+<style scoped>
 .container {
   max-width: 900px;
 }

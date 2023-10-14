@@ -1,7 +1,11 @@
 <script setup lang="ts">
+import Footer from '../components/Footer.vue';
+import NavBar from '../components/NavBar.vue';
+
 </script>
 <template>
 <main>
+  <NavBar/>
   <div class="container py-5">
     <div class="row g-5">
 
@@ -28,7 +32,7 @@
                     <input type="date" id="data" name="data">
             </div>
             <div class=" column-gap-3 row-gap-3 px-4 py-4 border border-3  rounded row row-cols-1 row-cols-sm-2 row-cols-md-6 ">
-              <button type="button" class="btn btn-primary p-2 g-col-6">12:00</button>
+              <RouterLink to="/buyTicket"  type="button" class="btn btn-primary p-2 g-col-6">12:00</RouterLink>
 
             </div>
 
@@ -38,9 +42,10 @@
 
     </div>
   </div>
+  <Footer/>
 </main>
 </template>
-<style>
+<style scoped>
   .container {
   max-width: 70%;
 }
