@@ -1,39 +1,49 @@
 <script setup lang="ts">
+import { ref, onMounted } from 'vue';
 import MovieCard from '../components/MovieCard.vue';
+import { type Movie } from '../types';
+import { movieService } from '../api/MovieService';
 import NavBar from '../components/NavBar.vue';
 import Footer from '../components/Footer.vue';
+
+//Variável reativa que fica false quando o objeto requisitado chega
+const loading = ref(true);
+
+// Criando uma variável que é um  vetor de filmes vazia "([])"
+const movies = ref<Movie[]>([]);
+
+//Chamando a função .all() do movieservice
+onMounted(async () => {
+  movies.value = await movieService.all();
+  console.log(movies);
+  movies.value.forEach((movie) => console.log(movie));
+});
 </script>
 
 <template>
   <!-- cabeçalho -->
-<NavBar/>
+  <NavBar />
 
-
-<!-- Conteúdo -->
-<div class="album py-4 bg-body-tertiary">
-  <div class="container ">
-    <h2 class="mb-4">Filmes em Cartaz</h2>
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3">
-      <MovieCard></MovieCard>
-      <MovieCard></MovieCard>
-      <MovieCard></MovieCard>
-      <MovieCard></MovieCard>
-      <MovieCard></MovieCard>
-      <MovieCard></MovieCard>
-      <MovieCard></MovieCard>
-      <MovieCard></MovieCard>
-      <MovieCard></MovieCard>
-      <MovieCard></MovieCard>
-      <MovieCard></MovieCard>
-      
+  <!-- Conteúdo -->
+  <div class="album py-4 bg-body-tertiary">
+    <div class="container">
+      <h2 class="mb-4">Filmes em Cartaz</h2>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3">
+        <div class="col" v-for="movie in movies" :key="movie.id">
+          <MovieCard
+            :id="movie.id"
+            :titulo="movie.title"
+            :descricao="movie.description"
+            :poster="movie.poster"
+          ></MovieCard>
+        </div>
+      </div>
     </div>
   </div>
-</div>
 
   <!-- Rodapé -->
-<Footer/>
+  <Footer />
 </template>
-
 
 <style scoped>
 .bd-placeholder-img {
@@ -53,10 +63,11 @@ import Footer from '../components/Footer.vue';
 .b-example-divider {
   width: 100%;
   height: 3rem;
-  background-color: rgba(0, 0, 0, .1);
-  border: solid rgba(0, 0, 0, .15);
+  background-color: rgba(0, 0, 0, 0.1);
+  border: solid rgba(0, 0, 0, 0.15);
   border-width: 1px 0;
-  box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+  box-shadow: inset 0 0.5em 1.5em rgba(0, 0, 0, 0.1),
+    inset 0 0.125em 0.5em rgba(0, 0, 0, 0.15);
 }
 
 .b-example-vr {
@@ -66,7 +77,7 @@ import Footer from '../components/Footer.vue';
 }
 
 .bi {
-  vertical-align: -.125em;
+  vertical-align: -0.125em;
   fill: currentColor;
 }
 
@@ -109,7 +120,6 @@ import Footer from '../components/Footer.vue';
   z-index: 1500;
 }
 .container {
-    max-width:97%;
+  max-width: 97%;
 }
 </style>
-

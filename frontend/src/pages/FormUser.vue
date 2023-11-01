@@ -1,53 +1,6 @@
 <script setup lang="ts">
 import NavBar from '../components/NavBar.vue';
 import Footer from '../components/Footer.vue';
-
-import { reactive, ref } from 'vue';
-import { api } from '../service/http';
-
-import { userAuth } from '../stores/userAuthStore';
-import { useRouter } from 'vue-router';
-
-const validated = ref(false);
-const form = reactive({
-  username: '',
-  password: '',
-  email: '',
-  role: 'Authenticated',
-  password2: '',
-});
-const validationMessage = ref('');
-
-const auth = userAuth();
-
-const router = useRouter();
-
-async function createUser() {
-  try {
-    const parsedData = {
-      username: form.username,
-      password: form.password,
-      email: form.email,
-      role: form.role,
-      confirmed: true,
-      blocked: false,
-    };
-    console.log('data', parsedData);
-    if (form.password != form.password2) {
-      alert('Senhas diferentes');
-      return;
-    }
-
-    const { data } = await api.post('/auth/local/register', parsedData);
-    auth.setToken(data.jwt);
-    auth.setUser(data.user);
-    router.push({
-      path: '/',
-    });
-  } catch (error) {
-    console.log(error);
-  }
-}
 </script>
 <template>
   <main>
