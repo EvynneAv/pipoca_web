@@ -14,7 +14,7 @@ class MovieService {
         },
       });
       //Retorna o objeto com todos os filme
-      console.log('chamou movieservice ');
+      console.log('RETURN DO .ALL()');
       console.log(data.data);
       return data.data;
       //caso não dê certo ele da esse erro

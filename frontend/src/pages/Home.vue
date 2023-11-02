@@ -15,8 +15,6 @@ const movies = ref<Movie[]>([]);
 //Chamando a função .all() do movieservice
 onMounted(async () => {
   movies.value = await movieService.all();
-  console.log(movies);
-  movies.value.forEach((movie) => console.log(movie));
 });
 </script>
 
