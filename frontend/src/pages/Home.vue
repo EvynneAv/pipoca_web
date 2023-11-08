@@ -28,12 +28,8 @@ onMounted(async () => {
       <h2 class="mb-4">Filmes em Cartaz</h2>
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3">
         <div class="col" v-for="movie in movies" :key="movie.id">
-          <MovieCard
-            :id="movie.id"
-            :titulo="movie.title"
-            :descricao="movie.description"
-            :poster="movie.poster"
-          ></MovieCard>
+          <!-- No lugar do movie card fazer um sessioncard -->
+          <MovieCard :titulo="movie.title" :poster="movie.poster"></MovieCard>
         </div>
       </div>
     </div>

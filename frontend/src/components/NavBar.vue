@@ -47,7 +47,7 @@ import { RouterLink } from 'vue-router';
           </li> -->
           <li>
             <RouterLink to="/movies" class="nav-link px-2 text-white"
-              >Gerenciar Filmes</RouterLink
+              >Biblioteca</RouterLink
             >
           </li>
           <!-- <li>
@@ -57,7 +57,7 @@ import { RouterLink } from 'vue-router';
           </li> -->
           <li>
             <RouterLink to="/movieStorage" class="nav-link px-2 text-white"
-              >Biblioteca</RouterLink
+              >Gerenciar filmes</RouterLink
             >
           </li>
         </ul>

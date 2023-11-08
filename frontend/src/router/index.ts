@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../pages/Home.vue';
 import Login from '../pages/Login.vue';
 import FormUser from '../pages/FormUser.vue';
-const MovieInDetails = () => import('../pages/MovieInDetails.vue');
+import MovieInDetails from '../pages/MovieInDetails.vue';
 const MyMovies = () => import('../pages/MyMovies.vue');
 const AddMovie = () => import('../pages/AddMovie.vue');
 const movieStorage = () => import('../pages/movieStorage.vue');
@@ -16,7 +16,7 @@ const routes = [
   },
   { path: '/movies', component: Movies, name: 'movies' },
   {
-    path: '/movieinDetails',
+    path: '/movies/:id',
     component: MovieInDetails,
     name: 'movieInDetails',
   },
