@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
+import { useUserStore } from '../stores/userStore';
+const userStore = useUserStore();
 </script>
 <template>
   <header class="p-3 text-bg-dark">
@@ -56,7 +58,7 @@ import { RouterLink } from 'vue-router';
             >
           </li> -->
           <li>
-            <RouterLink to="/movieStorage" class="nav-link px-2 text-white"
+            <RouterLink to="/admin" class="nav-link px-2 text-white"
               >Gerenciar filmes</RouterLink
             >
           </li>
@@ -70,18 +72,32 @@ import { RouterLink } from 'vue-router';
             aria-label="Search"
           />
         </form>
+        <div
+          v-if="userStore.user.username"
+          class="nav text-end justify-content-center"
+        >
+          <h4 style="margin-right: 12px">{{ userStore.user.username }}</h4>
 
-        <div class="text-end">
+          <RouterLink
+            @click="userStore.logout"
+            to="/"
+            type="button"
+            class="btn btn-secondary text-decoration-none"
+            >Logout</RouterLink
+          >
+        </div>
+        <div v-else class="text-end">
           <RouterLink
             to="login"
             type="button"
-            class="btn btn-outline-light me-2 text-decoration-none"
+            class="btn btn-primary me-2 text-decoration-none"
             >Login</RouterLink
           >
+
           <RouterLink
             to="/formUser"
             type="button"
-            class="btn btn-warning text-decoration-none"
+            class="btn btn-secondary text-decoration-none"
             >Cadastre-se</RouterLink
           >
         </div>

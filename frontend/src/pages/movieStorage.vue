@@ -1,10 +1,7 @@
 <script setup lang="ts">
 import EditMovieCard from '../components/EditMovieCard.vue';
-import NavBar from '../components/NavBar.vue';
-import Footer from '../components/Footer.vue';
 </script>
 <template>
-  <NavBar />
   <div class="album py-5 bg-body-tertiary">
     <div class="container">
       <h3>Coletânea de filmes</h3>
@@ -26,7 +23,6 @@ import Footer from '../components/Footer.vue';
       </div>
     </div>
   </div>
-  <Footer />
 </template>
 <style scoped>
 .container {

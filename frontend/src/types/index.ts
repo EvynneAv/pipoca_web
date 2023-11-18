@@ -16,3 +16,11 @@ export type Comment = {
   rating: number;
   //não preciso colocar a relação na tipagem
 };
+
+export type User = {
+  jwt: string;
+  id: number;
+  username: string;
+  email: string;
+  role: string;
+};

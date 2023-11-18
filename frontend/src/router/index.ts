@@ -9,6 +9,11 @@ const movieStorage = () => import('../pages/movieStorage.vue');
 const Movies = () => import('../pages/Movies.vue');
 const routes = [
   {
+    path: '/admin',
+    component: movieStorage,
+    requireAuth: true,
+  },
+  {
     path: '/',
     component: Home,
     name: 'home',
@@ -40,11 +45,6 @@ const routes = [
     component: Login,
     name: 'login',
     alias: '/login',
-  },
-  {
-    path: '/movieStorage',
-    component: movieStorage,
-    name: 'movieStorage',
   },
 ];
 

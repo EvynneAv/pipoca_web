@@ -34,8 +34,6 @@ onMounted(async () => {
 </script>
 
 <template>
-  <!-- cabeçalho -->
-  <NavBar />
   <!-- caso haja erro na requisição -->
   <div
     v-if="error"
@@ -70,9 +68,6 @@ onMounted(async () => {
       </div>
     </div>
   </div>
-
-  <!-- Rodapé -->
-  <Footer />
 </template>
 
 <style scoped>
