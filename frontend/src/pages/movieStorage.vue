@@ -73,7 +73,7 @@ async function remove() {
       </div>
       <h3>Coletânea de filmes</h3>
       <button class="botao btn btn-primary text-center" type="button">
-        <RouterLink to="/admin/movie">Adicionar Filme</RouterLink>
+        <RouterLink to="/admin/novo">Adicionar Filme</RouterLink>
       </button>
       <div
         class="row row-cols-1 row-cols-sm-2 row-cols-md-1 g-3"
@@ -90,8 +90,8 @@ async function remove() {
         <div
           class="column-gap-3 row-gap-3 row justify-content-end row-cols-1 row-cols-sm-2 row-cols-md-6"
         >
-          <button type="button" class="ed btn btn-secondary btn-sm">
-            Editar
+          <button class="btn btn-sm btn-primary">
+            <router-link :to="`/movies/editar/${movie.id}`">Editar</router-link>
           </button>
           <!-- botão modal de delete -->
           <button
@@ -158,8 +158,8 @@ async function remove() {
 }
 .botao {
   position: fixed;
-  top: 95px;
-  right: 130px;
+  top: 80px;
+  left: 20px;
 }
 .ed {
   margin-left: 20px;

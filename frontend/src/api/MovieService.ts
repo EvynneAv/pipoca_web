@@ -38,6 +38,68 @@ class MovieService {
     });
     return data.data;
   }
+
+  async create(
+    title: string,
+    description: string,
+    poster: File,
+  ): Promise<Movie> {
+    //pegando a store do user
+    const userStore = useUserStore();
+    //só é possivel mandar uma capa se mandar em uma parte separada dos outros campos, tudo é colocado dentro da variável body em formato FormData()
+    const body = new FormData();
+    body.append('files.poster', poster);
+    //aqui eu to mandando tudo que não é poster em forma de string como um arquivo JSON
+    body.append(
+      'data',
+      JSON.stringify({
+        title,
+        description,
+      }),
+    );
+    // pra poder fazer o post eu preciso mandar onde o filme vai ser guardado, o body que tem os dados do filme e fazer a authorization através do headers e mandando o token da store de user
+    const { data } = await api.post('/movies', body, {
+      headers: {
+        Authorization: `Bearer ${userStore.token}`,
+      },
+    });
+    return data.data;
+  }
+
+  async update(
+    id: number,
+    title: string,
+    description: string,
+    poster?: File,
+  ): Promise<Movie> {
+    const userStore = useUserStore();
+    type BodyFields = {
+      data: {
+        title: string;
+        description: string;
+      };
+    };
+    const fields = {
+      title,
+      description,
+    };
+    let body: BodyFields | FormData = {
+      data: fields,
+    };
+
+    if (poster) {
+      body = new FormData();
+      body.append('files.poster', poster);
+      body.append('data', JSON.stringify(fields));
+    }
+
+    const { data } = await api.put(`/movies/${id}`, body, {
+      headers: {
+        Authorization: `Bearer ${userStore.token}`,
+      },
+    });
+    return data.data;
+  }
 }
 
 export const movieService = new MovieService();

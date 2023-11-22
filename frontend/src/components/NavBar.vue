@@ -4,7 +4,7 @@ import { useUserStore } from '../stores/userStore';
 const userStore = useUserStore();
 </script>
 <template>
-  <header class="p-3 text-bg-dark">
+  <header class="p-1 text-bg-dark">
     <div class="container">
       <div
         class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start mr-3"
@@ -37,7 +37,7 @@ const userStore = useUserStore();
         <ul
           class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
         >
-          <li>
+          <li style="margin-left: 10px">
             <RouterLink to="/" class="nav-link px-2 text-white"
               >Home</RouterLink
             >
@@ -52,11 +52,11 @@ const userStore = useUserStore();
               >Biblioteca</RouterLink
             >
           </li>
-          <!-- <li>
-            <RouterLink to="/addSession" class="nav-link px-2 text-white"
+          <li>
+            <RouterLink to="/adminSession" class="nav-link px-2 text-white"
               >Gerenciar Seções</RouterLink
             >
-          </li> -->
+          </li>
           <li>
             <RouterLink to="/admin" class="nav-link px-2 text-white"
               >Gerenciar filmes</RouterLink

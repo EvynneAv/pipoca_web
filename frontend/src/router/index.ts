@@ -17,10 +17,20 @@ const routes = [
     },
   },
   {
-    path: '/admin/movie',
+    path: '/admin/novo',
     component: AddMovie,
     name: 'addMovie',
-    // botar um required auth aqui
+    meta: {
+      requireAuth: true,
+    },
+  },
+  {
+    path: '/movies/editar/:id',
+    component: AddMovie,
+    meta: {
+      requireAuth: true,
+    },
+    props: true,
   },
   {
     path: '/',
@@ -34,6 +44,8 @@ const routes = [
     component: MovieInDetails,
     name: 'movieInDetails',
   },
+
+  // --------------------------------------------
   {
     path: '/formUser',
     component: FormUser,
