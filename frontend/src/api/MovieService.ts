@@ -1,4 +1,5 @@
 import { api } from '../api/index';
+import { useUserStore } from '../stores/userStore';
 import { type Movie } from '../types';
 //criando uma classe MovieService
 class MovieService {
@@ -21,6 +22,18 @@ class MovieService {
       params: {
         //por padrão o vue não retorna relações, é preciso fazer isso manualmente como aqui
         populate: ['poster', 'comments'],
+      },
+    });
+    return data.data;
+  }
+  //função de deletar, utiliza a userstore pra authorizar a deleção
+  //mando o id do filme que quero apagar, depois recebo os dados do filme apagado em {data}
+  async delete(id: number): Promise<Movie> {
+    const userStore = useUserStore();
+    const { data } = await api.delete(`/movies/${id}`, {
+      //tenho que mandar esse cabeçário, se não a requisição não é authorizada
+      headers: {
+        Authorization: `Bearer ${userStore.token}`,
       },
     });
     return data.data;

@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import CommentsContainer from '../components/Comment/Container.vue';
-import Footer from '../components/Footer.vue';
-import NavBar from '../components/NavBar.vue';
 import { ref, onMounted } from 'vue';
 //useRoute pega a rota que estamnos na url e usa ela pra chamar o get pelo id
 import { useRoute } from 'vue-router';
@@ -33,7 +31,6 @@ onMounted(async () => {
 </script>
 <template>
   <main>
-    <NavBar />
     <p v-if="error">
       {{ error }}
     </p>
@@ -57,7 +54,6 @@ onMounted(async () => {
         </div>
       </div>
     </div>
-    <Footer />
   </main>
 </template>
 <style scoped>
