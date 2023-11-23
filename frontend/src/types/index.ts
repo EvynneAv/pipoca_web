@@ -6,6 +6,14 @@ export type Movie = {
   comments: Comment[];
 };
 
+export type Session = {
+  id: number;
+  sala: string;
+  horario: string;
+  ingresso: number;
+  movie: Movie;
+};
+
 export type Poster = {
   url: string;
   altenativeText?: string;

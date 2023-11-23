@@ -362,84 +362,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiCommentComment extends Schema.CollectionType {
-  collectionName: 'comments';
-  info: {
-    singularName: 'comment';
-    pluralName: 'comments';
-    displayName: 'Comment';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    description: Attribute.String;
-    rating: Attribute.Integer &
-      Attribute.SetMinMax<{
-        min: 0;
-        max: 5;
-      }>;
-    movie: Attribute.Relation<
-      'api::comment.comment',
-      'manyToOne',
-      'api::movie.movie'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::comment.comment',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::comment.comment',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiMovieMovie extends Schema.CollectionType {
-  collectionName: 'movies';
-  info: {
-    singularName: 'movie';
-    pluralName: 'movies';
-    displayName: 'movie';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    title: Attribute.String;
-    description: Attribute.Text;
-    poster: Attribute.Media;
-    comments: Attribute.Relation<
-      'api::movie.movie',
-      'oneToMany',
-      'api::comment.comment'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::movie.movie',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::movie.movie',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -755,6 +677,122 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiCommentComment extends Schema.CollectionType {
+  collectionName: 'comments';
+  info: {
+    singularName: 'comment';
+    pluralName: 'comments';
+    displayName: 'Comment';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    description: Attribute.String;
+    rating: Attribute.Integer &
+      Attribute.SetMinMax<{
+        min: 0;
+        max: 5;
+      }>;
+    movie: Attribute.Relation<
+      'api::comment.comment',
+      'manyToOne',
+      'api::movie.movie'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::comment.comment',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::comment.comment',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiMovieMovie extends Schema.CollectionType {
+  collectionName: 'movies';
+  info: {
+    singularName: 'movie';
+    pluralName: 'movies';
+    displayName: 'movie';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    description: Attribute.Text;
+    poster: Attribute.Media;
+    comments: Attribute.Relation<
+      'api::movie.movie',
+      'oneToMany',
+      'api::comment.comment'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::movie.movie',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::movie.movie',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiSessionSession extends Schema.CollectionType {
+  collectionName: 'sessions';
+  info: {
+    singularName: 'session';
+    pluralName: 'sessions';
+    displayName: 'Session';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    sala: Attribute.String & Attribute.Required;
+    horario: Attribute.String;
+    ingresso: Attribute.Decimal;
+    movie: Attribute.Relation<
+      'api::session.session',
+      'oneToOne',
+      'api::movie.movie'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::session.session',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::session.session',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -765,14 +803,15 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::comment.comment': ApiCommentComment;
-      'api::movie.movie': ApiMovieMovie;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::i18n.locale': PluginI18NLocale;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::comment.comment': ApiCommentComment;
+      'api::movie.movie': ApiMovieMovie;
+      'api::session.session': ApiSessionSession;
     }
   }
 }

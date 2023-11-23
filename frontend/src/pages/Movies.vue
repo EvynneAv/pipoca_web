@@ -5,8 +5,6 @@ import { ref, onMounted } from 'vue';
 import MovieCard from '../components/MovieCard.vue';
 import { type Movie } from '../types';
 import { movieService } from '../api/MovieService';
-import NavBar from '../components/NavBar.vue';
-import Footer from '../components/Footer.vue';
 
 //Variável reativa que fica false quando o objeto requisitado chega
 const loading = ref(true);

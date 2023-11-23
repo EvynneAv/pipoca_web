@@ -7,6 +7,8 @@ import MovieInDetails from '../pages/MovieInDetails.vue';
 const MyMovies = () => import('../pages/MyMovies.vue');
 const AddMovie = () => import('../pages/AddMovie.vue');
 const movieStorage = () => import('../pages/movieStorage.vue');
+import SessionInDetails from '../pages/SessionInDetails.vue';
+import SessionStorage from '../pages/SessionStorage.vue';
 const Movies = () => import('../pages/Movies.vue');
 const routes = [
   {
@@ -43,6 +45,31 @@ const routes = [
     path: '/movies/:id',
     component: MovieInDetails,
     name: 'movieInDetails',
+  },
+  {
+    path: '/sessions/:id',
+    component: SessionInDetails,
+    name: 'sessionInDetails',
+  },
+  {
+    path: '/adminSession',
+    component: SessionStorage,
+    name: 'sessionStorage',
+    meta: {
+      requireAuth: true,
+    },
+  },
+  {
+    path: '/adminSession/novo',
+    component: AddMovie,
+    name: 'addSession',
+    //required authorization aqui
+  },
+  {
+    path: '/adminSession/novo',
+    component: AddMovie,
+    name: 'addSession',
+    //required authorization aqui
   },
 
   // --------------------------------------------

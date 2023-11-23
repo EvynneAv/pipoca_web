@@ -1,14 +1,17 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-import EditMovieCard from '../components/EditMovieCard.vue';
-import { type Movie } from '../types';
-import { movieService } from '../api/MovieService';
+import EditSessionCard from '../components/EditSessionCard.vue';
+import { type Session } from '../types';
+import { sessionService } from '../api/SessionService';
 const loading = ref(true);
 
-const movies = ref<Movie[]>([]);
+const sessions = ref<Session[]>([]);
 
-//variável que vou levar pro modal pra deletar o filme selecionado
-const selectedMovie = ref<{ id: number; title: string }>({ id: 0, title: '' });
+const selectedSession = ref<{ id: number; sala: string; horario: string }>({
+  id: 0,
+  sala: '',
+  horario: '',
+});
 //variável com o valor do filme apagado
 const feedback = ref('');
 //variável que vai ser exibida se haver um erro
@@ -16,7 +19,7 @@ const error = ref('');
 
 onMounted(async () => {
   try {
-    movies.value = await movieService.all();
+    sessions.value = await sessionService.all();
   } catch (e) {
     if (e instanceof Error) {
       error.value = e.message;
@@ -27,21 +30,22 @@ onMounted(async () => {
 });
 
 //função que coloca um filme na variável que vai apgar lá no modal
-function selectMovie(id: number, title: string) {
-  selectedMovie.value = { id, title };
-  console.log(selectedMovie.value);
+function selectSession(id: number, sala: string, horario: string) {
+  selectedSession.value = { id, sala, horario };
+  console.log(selectedSession.value);
 }
 
-//executando a função de deletar do movieservice
 async function remove() {
   try {
     //chamando delete com o id do filme que ta dentro de selected movie
     //aqui apago no back
-    const res = await movieService.delete(selectedMovie.value.id);
+    const res = await sessionService.delete(selectedSession.value.id);
     //aqui eu atualizo a lista que tá no front com todos os filmes qque tenham id diferente ao do apagado
-    movies.value = movies.value.filter((m) => m.id != selectedMovie.value.id);
+    sessions.value = sessions.value.filter(
+      (m) => m.id != selectedSession.value.id,
+    );
     //aqui eu mando os dados do filme apagado lá pro feedback que vai ser mostrado
-    feedback.value = `Filme: ${res.title} removido com sucesso`;
+    feedback.value = `Sessão: ${res.sala} - ${res.horario} removido com sucesso`;
   } catch (e) {
     console.log(e);
     if (e instanceof Error) {
@@ -51,8 +55,9 @@ async function remove() {
 }
 </script>
 <template>
-  <div class="album py-5 bg-body-tertiary">
+  <div class="album py-4 bg-body-tertiary">
     <div class="container">
+      <h3>Gerênciar sessões disponiveis</h3>
       <!-- aparece dizendo os dados que foram apagados -->
       <div
         style="margin: 20px"
@@ -71,35 +76,43 @@ async function remove() {
       >
         {{ error }}
       </div>
-      <h3>Sessões em cartaz</h3>
-      <button class="botao btn btn-primary text-center" type="button">
-        <RouterLink to="/admin/novo">Adicionar Filme</RouterLink>
+      <button
+        class="botao btn btn-primary text-center text-decoration-none"
+        type="button"
+      >
+        <RouterLink to="/adminSession/novo">Adicionar Sessão</RouterLink>
       </button>
       <div
-        class="row row-cols-1 row-cols-sm-2 row-cols-md-1 g-3"
-        v-for="movie in movies"
-        :key="movie.id"
+        class="row row-cols-1 row-cols-sm-2 row-cols-md-1"
+        v-for="session in sessions"
+        :key="session.id"
       >
-        <EditMovieCard
-          :titulo="movie.title"
-          :poster="movie.poster"
-          :descricao="movie.description"
-          :id="movie.id"
+        <EditSessionCard
+          :id="session.id"
+          :horario="session.horario"
+          :movie="session.movie"
+          :ingresso="session.ingresso"
+          :sala="session.sala"
         >
-        </EditMovieCard>
+        </EditSessionCard>
         <div
           class="column-gap-3 row-gap-3 row justify-content-end row-cols-1 row-cols-sm-2 row-cols-md-6"
         >
+          <button class="btn btn-sm btn-secondary">
+            <RouterLink to="/">Voltar</RouterLink>
+          </button>
           <button class="btn btn-sm btn-primary">
-            <router-link :to="`/movies/editar/${movie.id}`">Editar</router-link>
+            <router-link :to="`/AdminSession/editar/${session.id}`"
+              >Editar</router-link
+            >
           </button>
           <!-- botão modal de delete -->
           <button
             type="button"
-            class="ed btn btn-danger btn-sm"
+            class="btn btn-danger btn-sm"
             data-bs-toggle="modal"
             data-bs-target="#exampleModal"
-            @click="selectMovie(movie.id, movie.title)"
+            @click="selectSession(session.id, session.sala, session.horario)"
           >
             Apagar
           </button>
@@ -128,8 +141,9 @@ async function remove() {
           ></button>
         </div>
         <div class="modal-body">
-          Você tem certeza que deseja deletar o filme
-          <strong>{{ selectedMovie?.title }}</strong
+          Você tem certeza que deseja deletar o a Sessão da sala:
+          <strong>{{ selectedSession?.sala }}</strong> Data:
+          <strong>{{ selectedSession?.horario }}</strong
           >?
         </div>
         <div class="modal-footer">
