@@ -1,6 +1,6 @@
 # :checkered_flag: PIPOCA.COM
 
-Um site simples de venda ingressos para um cinema.
+Um site simples para divulgar sessões de filmes de um cinema além dos filmes que já passaram por este cinema
 
 ## :technologist: Membros da equipe
 
@@ -8,8 +8,8 @@ Um site simples de venda ingressos para um cinema.
 
 ## :people_holding_hands: Papéis ou tipos de usuário da aplicação
 
-- Usuário logado
 - Usuário não logado
+- Funcionário
 - Administrador
 
 Informe aqui os tipos de usuário que irão interagir com a aplicação. Ex: administrador, locador, locatario, usuário não logado.
@@ -20,53 +20,54 @@ Informe aqui os tipos de usuário que irão interagir com a aplicação. Ex: adm
 
 - Usuário
 - Filme
-- Ingresso
 - Comentário
 - Sessão
 
-## :triangular_flag_on_post:	 Principais funcionalidades da aplicação
+## :triangular_flag_on_post: Principais funcionalidades da aplicação
 
 Descreve ou liste brevemente as principais funcionalidades da aplicação que será desenvolvida. Destaque a funcionalidades que serão acessévies a todos os usuários e aquelas restriras a usuários logados.
 
-- O usuário logado poderá comprar um ingresso.
-- O usuário logado e o não logado poderão ver a lista de filmes disponíveis, os detalhes de cada filme e ver se têm ingressos disponíveis.
-- O administrador poderá adicionar, remover, editar e deletar sessões e filmes.
+- Um usuário não logado pode ver os filmes que estão em cartaz e os filmes que já estiveram em cartaz
+- Funcionário pode ver o que o usuário não logado vê, além de poder gerênciar as sessões que estão disponíveis no cinema
+- O administrador pode fazer o que os papéis acima fazem, além de também poder gerênciar os filmes do site.
 
-----
+---
 
 :warning::warning::warning: As informações a seguir devem ser enviadas juntamente com a versão final do projeto. :warning::warning::warning:
 
-
-----
+---
 
 ## :desktop_computer: Tecnologias e frameworks utilizados
 
 **Frontend:**
 
-Lista as tecnologias, frameworks e bibliotecas utilizados.
+- VueJS v3.0, Vue-Router e Pinia.
+- Axios
 
 **Backend:**
 
-Lista as tecnologias, frameworks e bibliotecas utilizados.
-
+- Strapi
 
 ## :shipit: Operações implementadas para cada entidade da aplicação
 
-
-| Entidade| Criação | Leitura | Atualização | Remoção |
-| --- | --- | --- | --- | --- |
-| Usuário |  |    |  |  |
-| Filme | X |  X  |  X | X |
-| Sessão | X |  X  | X | X |
-| Ingresso |  |    |  |  |
-| Comentário | X | X   | X | X |
-
+| Entidade   | Criação | Leitura | Atualização | Remoção |
+| ---------- | ------- | ------- | ----------- | ------- |
+| Usuário    |         |         |             |         |
+| Filme      | X       | X       | X           | X       |
+| Sessão     | X       | X       | X           | X       |
+| Comentário |         |         |             |         |
 
 > Lembre-se que é necessário implementar o CRUD de pelo menos duas entidades.
 
 ## :neckbeard: Rotas da API REST utilizadas
 
-| Método HTTP | URL |
-| --- | --- |
-| GET | api/entidade1/|
-| POST | api/entidade2 |
+| Método HTTP | URL           |
+| ----------- | ------------- |
+| GET         | api/movies/   |
+| POST        | api/movies    |
+| PUT         | api/movies/   |
+| DELETE      | api/movies/   |
+| GET         | api/sessions/ |
+| POST        | api/sessions  |
+| PUT         | api/sessions/ |
+| DELETE      | api/sessions/ |
