@@ -33,6 +33,8 @@ Descreve ou liste brevemente as principais funcionalidades da aplicação que se
 
 ## :Entradas do banco para teste
 
+STRAPI evynne@mail.com Senha: Admin123456
+
 ADMIN email: sauro@mail.com Senha: 123qwe
 FUNCIONARIO email: cinemax@gmail.com Senha: 123qwe
 
