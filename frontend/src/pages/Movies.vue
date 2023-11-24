@@ -53,8 +53,9 @@ onMounted(async () => {
     </div>
   </div>
   <!-- Conteúdo -->
-  <div class="album py-5 bg-body-tertiary">
+  <div class="album py-3 bg-body-tertiary">
     <div class="container">
+      <h2>Filmes armazenados</h2>
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-6 g-3">
         <div class="col" v-for="movie in movies" :key="movie.id">
           <MovieCard

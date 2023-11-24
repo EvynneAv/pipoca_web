@@ -1,6 +1,7 @@
 import { api } from '../api/index';
 import { useUserStore } from '../stores/userStore';
 import { type Movie } from '../types';
+
 //criando uma classe MovieService
 class MovieService {
   constructor() {}
@@ -30,6 +31,7 @@ class MovieService {
   //mando o id do filme que quero apagar, depois recebo os dados do filme apagado em {data}
   async delete(id: number): Promise<Movie> {
     const userStore = useUserStore();
+
     const { data } = await api.delete(`/movies/${id}`, {
       //tenho que mandar esse cabeçário, se não a requisição não é authorizada
       headers: {

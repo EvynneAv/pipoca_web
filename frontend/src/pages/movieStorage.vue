@@ -1,10 +1,17 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import EditMovieCard from '../components/EditMovieCard.vue';
-import { type Movie } from '../types';
+import { type Movie, type Session } from '../types';
 import { movieService } from '../api/MovieService';
+import { sessionService } from '../api/SessionService';
 const loading = ref(true);
 
+onMounted(async () => {
+  sessions.value = await sessionService.all();
+});
+const sessions = ref<Session[]>([]);
+
+// const session = ref<Session>({} as Session);
 const movies = ref<Movie[]>([]);
 
 //variável que vou levar pro modal pra deletar o filme selecionado
@@ -37,11 +44,18 @@ async function remove() {
   try {
     //chamando delete com o id do filme que ta dentro de selected movie
     //aqui apago no back
+    sessions.value.forEach((session: Session) => {
+      // Faça algo com cada sessão
+      if (session.movie.id == selectedMovie.value.id) {
+        console.log(session.id);
+        const res = sessionService.delete(session.id);
+      }
+    });
     const res = await movieService.delete(selectedMovie.value.id);
     //aqui eu atualizo a lista que tá no front com todos os filmes qque tenham id diferente ao do apagado
     movies.value = movies.value.filter((m) => m.id != selectedMovie.value.id);
     //aqui eu mando os dados do filme apagado lá pro feedback que vai ser mostrado
-    feedback.value = `Filme: ${res.title} removido com sucesso`;
+    feedback.value = `Filme: ${res.title} removido com sucesso junto com suas sessões correspondentes`;
   } catch (e) {
     console.log(e);
     if (e instanceof Error) {
@@ -71,7 +85,7 @@ async function remove() {
       >
         {{ error }}
       </div>
-      <h3>Sessões em cartaz</h3>
+      <h3>Filmes armazenados</h3>
       <button class="botao btn btn-primary text-center" type="button">
         <RouterLink to="/admin/novo">Adicionar Filme</RouterLink>
       </button>

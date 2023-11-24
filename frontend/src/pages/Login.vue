@@ -26,6 +26,8 @@ async function authenticate() {
     if (user.role == 'admin') {
       router.push('/admin');
       //se for admin manda pra essa rota, se não, vai pra outra
+    } else if (user.role) {
+      router.push('/adminSession');
     } else {
       router.push('/');
     }

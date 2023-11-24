@@ -52,12 +52,17 @@ const userStore = useUserStore();
               >Biblioteca</RouterLink
             >
           </li>
-          <li>
+          <li
+            v-if="
+              userStore.user.role === 'admin' ||
+              userStore.user.role === 'funcionario'
+            "
+          >
             <RouterLink to="/adminSession" class="nav-link px-2 text-white"
-              >Gerenciar Seções</RouterLink
+              >Gerenciar Sessões</RouterLink
             >
           </li>
-          <li>
+          <li v-if="userStore.user.role === 'admin'">
             <RouterLink to="/admin" class="nav-link px-2 text-white"
               >Gerenciar filmes</RouterLink
             >
@@ -94,12 +99,19 @@ const userStore = useUserStore();
             >Login</RouterLink
           >
 
-          <RouterLink
+          <!-- <RouterLink
             to="/formUser"
             type="button"
             class="btn btn-secondary text-decoration-none"
             >Cadastre-se</RouterLink
+          > -->
+          <button
+            disabled
+            type="button"
+            class="btn btn-secondary text-decoration-none"
           >
+            Cadastre-se
+          </button>
         </div>
       </div>
     </div>

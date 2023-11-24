@@ -31,6 +31,57 @@ class SessionService {
     });
     return data.data;
   }
+  async create(
+    sala: string,
+    horario: string,
+    ingresso: number,
+    movie_id: number,
+  ): Promise<Session> {
+    const userStore = useUserStore();
+    const body = new FormData();
+    body.append(
+      'data',
+      JSON.stringify({
+        sala,
+        horario,
+        ingresso,
+        movie: movie_id,
+      }),
+    );
+
+    const { data } = await api.post('/sessions', body, {
+      headers: {
+        Authorization: `Bearer ${userStore.token}`,
+      },
+    });
+    return data.data;
+  }
+  async update(
+    id: number,
+    sala: string,
+    horario: string,
+    ingresso: number,
+    movie_id: number,
+  ): Promise<Session> {
+    const userStore = useUserStore();
+    const body = new FormData();
+    body.append(
+      'data',
+      JSON.stringify({
+        sala,
+        horario,
+        ingresso,
+        movie_id,
+      }),
+    );
+
+    const { data } = await api.put(`/sessions/${id}`, body, {
+      headers: {
+        Authorization: `Bearer ${userStore.token}`,
+      },
+    });
+    return data.data;
+  }
 }
 
 export const sessionService = new SessionService();

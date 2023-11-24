@@ -98,9 +98,6 @@ async function remove() {
         <div
           class="column-gap-3 row-gap-3 row justify-content-end row-cols-1 row-cols-sm-2 row-cols-md-6"
         >
-          <button class="btn btn-sm btn-secondary">
-            <RouterLink to="/">Voltar</RouterLink>
-          </button>
           <button class="btn btn-sm btn-primary">
             <router-link :to="`/AdminSession/editar/${session.id}`"
               >Editar</router-link

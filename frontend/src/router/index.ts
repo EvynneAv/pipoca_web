@@ -6,24 +6,21 @@ import FormUser from '../pages/FormUser.vue';
 import MovieInDetails from '../pages/MovieInDetails.vue';
 const MyMovies = () => import('../pages/MyMovies.vue');
 const AddMovie = () => import('../pages/AddMovie.vue');
+
 const movieStorage = () => import('../pages/movieStorage.vue');
+import AddSession from '../pages/AddSession.vue';
 import SessionInDetails from '../pages/SessionInDetails.vue';
 import SessionStorage from '../pages/SessionStorage.vue';
+
 const Movies = () => import('../pages/Movies.vue');
 const routes = [
-  {
-    path: '/admin',
-    component: movieStorage,
-    meta: {
-      requireAuth: true,
-    },
-  },
   {
     path: '/admin/novo',
     component: AddMovie,
     name: 'addMovie',
     meta: {
       requireAuth: true,
+      authorized: ['admin'],
     },
   },
   {
@@ -31,6 +28,7 @@ const routes = [
     component: AddMovie,
     meta: {
       requireAuth: true,
+      authorized: ['admin'],
     },
     props: true,
   },
@@ -57,19 +55,28 @@ const routes = [
     name: 'sessionStorage',
     meta: {
       requireAuth: true,
+      authorized: ['admin', 'funcionario'],
     },
   },
+
   {
     path: '/adminSession/novo',
-    component: AddMovie,
+    component: AddSession,
     name: 'addSession',
-    //required authorization aqui
+    meta: {
+      requireAuth: true,
+      authorized: ['admin', 'funcionario'],
+    },
+    props: true,
   },
   {
-    path: '/adminSession/novo',
-    component: AddMovie,
-    name: 'addSession',
-    //required authorization aqui
+    path: '/adminSession/editar/:id',
+    component: AddSession,
+    meta: {
+      requireAuth: true,
+      authorized: ['admin', 'funcionario'],
+    },
+    props: true,
   },
 
   // --------------------------------------------
@@ -90,6 +97,14 @@ const routes = [
     name: 'login',
     alias: '/login',
   },
+  {
+    path: '/admin',
+    component: movieStorage,
+    meta: {
+      requireAuth: true,
+      authorized: ['admin'],
+    },
+  },
 ];
 
 export const router = createRouter({
@@ -99,13 +114,15 @@ export const router = createRouter({
 
 router.beforeEach((to, from) => {
   const userStore = useUserStore();
-  const user = userStore.user.role;
+  const user = userStore.user.username;
   const papel = userStore.user.role;
-
+  const authorized: string[] = <string[]>to.meta.authorized;
   console.log(
-    `quero ir pra ${to.path}. É protegida? ${to.meta.requireAuth}.Eu sou o ${user} com o papel ${papel}`,
+    `quero ir pra ${to.path}. É protegida? ${to.meta.requireAuth}.Eu sou o ${user} com o papel ${papel} ${authorized}`,
   );
-  if (to.meta.requireAuth && user == null) {
+  console.log(`${to.meta.requireAuth}, ${authorized}  `);
+
+  if (to.meta.requireAuth && (!user || !authorized.includes(papel))) {
     return { path: '/login' };
   }
 });
