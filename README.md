@@ -31,6 +31,11 @@ Descreve ou liste brevemente as principais funcionalidades da aplicação que se
 - Funcionário pode ver o que o usuário não logado vê, além de poder gerênciar as sessões que estão disponíveis no cinema
 - O administrador pode fazer o que os papéis acima fazem, além de também poder gerênciar os filmes do site.
 
+## :Entradas do banco para teste
+
+ADMIN email: sauro@mail.com Senha: 123qwe
+FUNCIONARIO email: cinemax@gmail.com Senha: 123qwe
+
 ---
 
 :warning::warning::warning: As informações a seguir devem ser enviadas juntamente com a versão final do projeto. :warning::warning::warning:
