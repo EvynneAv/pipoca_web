@@ -1,4 +1,4 @@
-# :checkered_flag: PIPOCA.COM
+# :popcorn: PIPOCA.COM
 
 Um site simples para divulgar sessões de filmes de um cinema além dos filmes que já passaram por este cinema
 
